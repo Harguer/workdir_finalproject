@@ -3,6 +3,8 @@
 
 - hosts: all 
   remote_user: root
+  vars_files:
+    - jboss-standalone/group_vars/jboss-servers  
 
   roles:
     - jboss-standalone
