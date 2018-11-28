@@ -15,7 +15,7 @@
 
   - name: Enabling and starting services
     service:
-      name: mysql
+      name: mairadb
       enabled: yes
       state: started
 
