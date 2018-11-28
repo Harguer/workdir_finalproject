@@ -7,3 +7,49 @@
       path: /etc/hosts
       line: '10.193.140.52 srv5.tsmx.lab srv5'
       state: present
+
+- name: Setting up machine against Red Hat Satellite 6.x
+  hosts: all
+  tasks:
+    - name: Include the vars file
+      include_vars: vars/vars.yml
+
+    - name: Install the consumer RPM from the Satellite Server
+      shell: "rpm -Uvh http://srv5.tsmx.lab/pub/katello-ca-consumer-latest.noarch.rpm"
+
+    - name: Register machine
+      redhat_subscription:
+        state: present
+        username: admin
+        password: "{{ password }}"
+        pool: "Employee SKU"
+     
+    - name: Disable all repos
+      shell: "subscription-manager repos --disable=*"
+
+    - name: Enable RHEL7 and Satellite tools repos
+      shell: "subscription-manager repos --enable rhel-7-server-rpms --enable rhel-7-server-satellite-tools-6.4-rpms"
+
+    - name: Install the required packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - katello-agent
+        - katello-host-tools-tracer
+
+    - name: Enabling and starting services
+      service:
+        name: "{{ item }}"
+        enabled: yes
+        state: started
+      with_items:
+        - goferd
+        - rhsmcertd
+    
+    - name: Katello package upload
+      shell: katello-package-upload
+
+    - name: Katello tracer upload
+      shell: katello-tracer-upload
+
