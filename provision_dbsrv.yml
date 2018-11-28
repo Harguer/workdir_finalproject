@@ -11,7 +11,7 @@
       state: present
     with_items:
       - mariadb-server
-      - mariadb-client
+      - mariadb
 
   - name: Enabling and starting services
     service:
