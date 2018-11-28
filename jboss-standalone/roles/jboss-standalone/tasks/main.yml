@@ -19,7 +19,7 @@
   template: src=standalone.xml dest=/usr/share/jboss-as/standalone/configuration/
   notify: restart jboss
   vars_files:
-     
+    - vars/jboss_servers
 
 - name: Add group "jboss"
   group: name=jboss
