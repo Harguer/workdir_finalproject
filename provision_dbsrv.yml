@@ -1,0 +1,27 @@
+---
+# Playbook that installs a database server, configures an admin user and restart the services
+
+- name: install database server
+  hosts: all
+
+  tasks:
+  - name: install mariadb database
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - mariadb-server
+      - mariadb-client
+
+  - name: Enabling and starting services
+    service:
+      name: mysql
+      enabled: yes
+      state: started
+
+  - name: create mysql user
+    mysql_user:
+      name: redhat
+      password: redhat
+      priv: '*.*:ALL,GRANT'
+      state: present
