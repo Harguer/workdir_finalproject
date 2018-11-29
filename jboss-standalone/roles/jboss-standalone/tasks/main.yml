@@ -7,6 +7,7 @@
   with_items:
    - unzip
    - java-1.7.0-openjdk
+   - iptables
 
 - name: Download JBoss from jboss.org
   get_url: url=http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip dest=/opt/jboss-as-7.1.1.Final.zip
