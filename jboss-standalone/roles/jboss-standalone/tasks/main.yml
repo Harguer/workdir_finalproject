@@ -1,6 +1,6 @@
 ---
 - name: Include the vars file
-  include_vars: jboss-standalone/vars/jboss-servers.yml
+  include_vars: vars/jboss-servers.yml
 
 - name: Install Java 1.7 and some basic dependencies
   yum: name={{item}} state=present
@@ -17,9 +17,6 @@
   # Rename the dir to avoid encoding the version in the init script
 - name: Rename install directory
   command: chdir=/usr/share /bin/mv jboss-as-7.1.1.Final jboss-as creates=/usr/share/jboss-as
-
-- name: Include the vars file
-  include_vars: jboss-standalone/vars/jboss_servers.yml
 
 - name: Copying standalone.xml configuration file
   template: src=standalone.xml dest=/usr/share/jboss-as/standalone/configuration/
