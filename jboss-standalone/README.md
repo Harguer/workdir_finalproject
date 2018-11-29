@@ -1,6 +1,6 @@
 ## Standalone JBoss Deployment
 
-- Requires Ansible 1.2 or newer
+- Requires Ansible 2.7
 - Expects CentOS/RHEL 7.x hosts
 
 These playbooks deploy a very basic implementation of JBoss Application Server,
