@@ -1,6 +1,6 @@
 ---
 - name: Include the vars file
-  include_vars: vars/jboss-servers.yml
+  include_vars: jboss-standalone/vars/jboss-servers.yml
 
 - name: Install Java 1.7 and some basic dependencies
   yum: name={{item}} state=present
