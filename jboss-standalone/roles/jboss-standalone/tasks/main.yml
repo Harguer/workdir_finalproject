@@ -44,4 +44,4 @@
   notify: restart iptables
 
 - name: stop firewalld
-  service: name=firewalld state=stoped disabled=yes
+  service: name=firewalld state=stopped enabled=no
