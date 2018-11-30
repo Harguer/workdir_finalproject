@@ -1,6 +1,6 @@
 ---
 - name: Set hostname
-  hosts: "{{ vm_target_name }}"
+  hosts: "{{ vm_name }}"
   tasks:
   - name: Add Satellite host
     lineinfile:
